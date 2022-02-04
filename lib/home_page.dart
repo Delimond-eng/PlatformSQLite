@@ -24,54 +24,36 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           //await DbHelper.createDb();
-          //await DbHelper.insert();
+          /*await DbHelper.createTables('''CREATE TABLE IF NOT EXISTS agents(
+      agentId INTEGER NOT NULL PRIMARY KEY,
+      agentNom TEXT,
+      agentGender TEXT
+    );''');*/
           //await _createdb();
 
-          await DbHelper.delete(
+          await DbHelper.update(
+            tableName: "agents",
+            values: {"agentNom": "Blaise", "agentGender": "Female"},
+            where: "agentId",
+            whereArgs: [4],
+          );
+
+          var res = await DbHelper.query(table: "agents");
+          print(res);
+          /*await DbHelper.delete(
               tableName: "users",
               where: "usernom",
-              whereArgs: ["'Jason sthatan'"]);
-          await readData();
+              whereArgs: ["'Jason sthatan'"]);*/
+          //await readData();
+          /*var res = await DbHelper.rawQuery("SELECT * FROM users");
+          res.forEach((e) {
+            print(e['usernom']);
+          });*/
           //await DbHelper.delete(table: "users");
         },
         tooltip: 'Create db & read data',
         child: const Icon(Icons.add),
       ),
     );
-  }
-
-  readData() {
-    //print('Using sqlite3 ${sqlite3.version}');
-
-    // Create a new in-memory database. To use a database backed by a file, you
-    // can replace this with sqlite3.open(yourFilePath).
-    final db = sqlite3.open("appdb.so");
-    // Create a table and insert some data
-    /*db.execute('''
-    CREATE TABLE artists (
-      id INTEGER NOT NULL PRIMARY KEY,
-      name TEXT NOT NULL
-    );
-  ''');*/
-
-    // Prepare a statement to run it multiple times:
-    /*final stmt = db.prepare('INSERT INTO artists (name) VALUES (?)');
-    stmt
-      ..execute(['Jean'])
-      ..execute(['Casteque'])
-      ..execute(['Ilunga'])
-      ..execute(['Prince']);
-
-    // Dispose a statement when you don't need it anymore to clean up resources.
-    stmt.dispose();*/
-
-    final ResultSet resultSet = db.select('SELECT * FROM users');
-    resultSet.forEach((element) {
-      print(element);
-    });
-    /*for (final row in resultSet) {
-      print('Artist[id: ${row['id']}, name: ${row['name']}]');
-    }*/
-    db.dispose();
   }
 }
