@@ -37,11 +37,12 @@ class _HomePageState extends State<HomePage> {
         users.add(User.fromMap(e));
       });
     });
-    emptyUser();
     viewJobs();
   }
 
   User selectedUser;
+  User selectedEditedUser;
+  Job selectedEditedJob;
   final formKeyUser = GlobalKey<FormState>();
   final formKeyJob = GlobalKey<FormState>();
 
@@ -67,6 +68,8 @@ class _HomePageState extends State<HomePage> {
                         child: Form(
                           key: formKeyUser,
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               InputField(
                                 errorText: "user name is required !",
@@ -89,43 +92,20 @@ class _HomePageState extends State<HomePage> {
                               const SizedBox(
                                 height: 20.0,
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Flexible(
-                                    child: Container(
-                                      height: 50.0,
-                                      width: double.infinity,
-                                      child: RaisedButton(
-                                        elevation: 10.0,
-                                        color: Colors.green[700],
-                                        child: const Text(
-                                          "Add",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        onPressed: () => addUser(context),
-                                      ),
-                                    ),
+                              Container(
+                                height: 40.0,
+                                child: RaisedButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4)),
+                                  elevation: 10.0,
+                                  color: Colors.green[700],
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                    size: 15.0,
                                   ),
-                                  const SizedBox(
-                                    width: 15.0,
-                                  ),
-                                  Flexible(
-                                    child: Container(
-                                      height: 50.0,
-                                      width: double.infinity,
-                                      child: RaisedButton(
-                                        elevation: 10.0,
-                                        color: Colors.blue,
-                                        child: const Text(
-                                          "Update",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        onPressed: () {},
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                  onPressed: () => addUser(context),
+                                ),
                               )
                             ],
                           ),
@@ -210,43 +190,20 @@ class _HomePageState extends State<HomePage> {
                               const SizedBox(
                                 height: 15.0,
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Flexible(
-                                    child: Container(
-                                      height: 50.0,
-                                      width: double.infinity,
-                                      child: RaisedButton(
-                                        elevation: 10.0,
-                                        color: Colors.green[700],
-                                        child: const Text(
-                                          "Add",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        onPressed: () => addJob(context),
-                                      ),
-                                    ),
+                              Container(
+                                height: 40.0,
+                                child: RaisedButton(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(4)),
+                                  elevation: 10.0,
+                                  color: Colors.green[700],
+                                  child: const Icon(
+                                    Icons.add,
+                                    color: Colors.white,
+                                    size: 15.0,
                                   ),
-                                  const SizedBox(
-                                    width: 15.0,
-                                  ),
-                                  Flexible(
-                                    child: Container(
-                                      height: 50.0,
-                                      width: double.infinity,
-                                      child: RaisedButton(
-                                        elevation: 10.0,
-                                        color: Colors.blue,
-                                        child: const Text(
-                                          "Update",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                        onPressed: () {},
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                                  onPressed: () => addJob(context),
+                                ),
                               )
                             ],
                           ),
@@ -265,107 +222,7 @@ class _HomePageState extends State<HomePage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.zero,
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 12.0,
-                              color: Colors.grey.withOpacity(.3),
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                          color: Colors.blue[100],
-                        ),
-                        height: 60.0,
-                        width: double.infinity,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Flexible(
-                              flex: 2,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "N°",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Flexible(
-                              flex: 2,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "User name",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.w800,
-                                      letterSpacing: 1.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Flexible(
-                              flex: 2,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "User gender",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.w800,
-                                      letterSpacing: 1.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Flexible(
-                              flex: 2,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Job",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.w800,
-                                      letterSpacing: 1.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Flexible(
-                              flex: 1,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [Container()],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+                      tableHeader(),
                       const SizedBox(
                         height: 10.0,
                       ),
@@ -377,13 +234,31 @@ class _HomePageState extends State<HomePage> {
                                 .map(
                                   (row) => TableBodyJobs(
                                     data: row,
-                                    onDelete: () async {
+                                    onDeleted: () async {
                                       await DbHelper.delete(
                                         tableName: "jobs",
                                         where: "jobId",
                                         whereArgs: [row.jobId],
                                       );
                                       await viewJobs();
+                                    },
+                                    onEdited: () {
+                                      User user = User(
+                                        userId: row.userId,
+                                        userGender: row.userGender,
+                                        userName: row.userName,
+                                      );
+                                      Job job = Job(
+                                        jobId: row.jobId,
+                                        jobName: row.jobName,
+                                      );
+                                      setState(() {
+                                        selectedEditedUser = user;
+                                        selectedEditedJob = job;
+                                        textUserName.text = user.userName;
+                                        textUserGender.text = user.userGender;
+                                        textJob.text = job.jobName;
+                                      });
                                     },
                                   ),
                                 )
@@ -400,9 +275,143 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {},
-        tooltip: 'Create db & read data',
-        child: const Icon(Icons.add),
+        backgroundColor: Colors.blue,
+        onPressed: updateData,
+        tooltip: 'update selected data',
+        child: const Icon(Icons.edit),
+      ),
+    );
+  }
+
+  Future<void> updateData() async {
+    User user = User(
+      userId: selectedEditedUser.userId,
+      userGender: textUserGender.text ?? selectedEditedUser.userGender,
+      userName: textUserName.text ?? selectedEditedUser.userName,
+    );
+
+    Job job = Job(
+      jobId: selectedEditedJob.jobId,
+      userId: selectedEditedUser.userId,
+      jobName: textJob.text ?? selectedEditedJob.jobName,
+    );
+    await DbHelper.update(
+      tableName: "users",
+      values: user.toMap(),
+      where: "userId",
+      whereArgs: [user.userId],
+    );
+
+    await DbHelper.update(
+      tableName: "jobs",
+      values: job.toMap(),
+      where: "userId",
+      whereArgs: [job.userId],
+    );
+    clearField();
+    await viewJobs();
+  }
+
+  Widget tableHeader() {
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.zero,
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 12.0,
+            color: Colors.grey.withOpacity(.3),
+            offset: const Offset(0, 3),
+          ),
+        ],
+        color: Colors.blue[100],
+      ),
+      height: 60.0,
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Flexible(
+            flex: 2,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "N°",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Flexible(
+            flex: 2,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "User name",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 1.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Flexible(
+            flex: 2,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "User gender",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 1.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Flexible(
+            flex: 2,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "Job",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 1.0,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Flexible(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [Container()],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -428,12 +437,22 @@ class _HomePageState extends State<HomePage> {
         tableName: "users",
         values: user.toMap(),
       );
+      clearField();
       if (lastInsertId != null) {
         print(lastInsertId);
         initData();
-        formKeyUser.currentState.reset();
       }
     }
+  }
+
+  clearField() {
+    setState(() {
+      textUserName.text = "";
+      textUserGender.text = "";
+      textJob.text = "";
+    });
+
+    emptyUser();
   }
 
   void addJob(context) async {
@@ -445,8 +464,7 @@ class _HomePageState extends State<HomePage> {
       );
       if (lastInsertId != null) {
         print(lastInsertId);
-        formKeyJob.currentState.reset();
-        emptyUser();
+        clearField();
         await viewJobs();
       }
     }
@@ -461,11 +479,13 @@ class _HomePageState extends State<HomePage> {
 
 class TableBodyJobs extends StatelessWidget {
   final Job data;
-  final Function onDelete;
+  final Function onDeleted;
+  final Function onEdited;
   const TableBodyJobs({
     Key key,
     this.data,
-    this.onDelete,
+    this.onDeleted,
+    this.onEdited,
   }) : super(key: key);
 
   @override
@@ -560,23 +580,39 @@ class TableBodyJobs extends StatelessWidget {
           ),
           Flexible(
             flex: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RawMaterialButton(
-                  onPressed: onDelete,
-                  child: const Icon(
-                    CupertinoIcons.trash,
-                    color: Colors.white,
-                    size: 15,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  RawMaterialButton(
+                    onPressed: onEdited,
+                    child: const Icon(
+                      CupertinoIcons.pencil,
+                      color: Colors.white,
+                      size: 15,
+                    ),
+                    shape: const CircleBorder(),
+                    elevation: 0,
+                    fillColor: Colors.blue,
+                    padding: const EdgeInsets.all(10),
                   ),
-                  shape: const CircleBorder(),
-                  elevation: 0,
-                  fillColor: Colors.grey[800],
-                  padding: const EdgeInsets.all(10),
-                ),
-              ],
+                  RawMaterialButton(
+                    onPressed: onDeleted,
+                    child: const Icon(
+                      CupertinoIcons.trash,
+                      color: Colors.white,
+                      size: 15,
+                    ),
+                    shape: const CircleBorder(),
+                    elevation: 0,
+                    fillColor: Colors.grey[800],
+                    padding: const EdgeInsets.all(10),
+                  ),
+                ],
+              ),
             ),
           ),
         ],
