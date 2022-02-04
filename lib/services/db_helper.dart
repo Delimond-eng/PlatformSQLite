@@ -18,9 +18,9 @@ class DbHelper {
     Database database;
     try {
       if (Platform.isLinux) {
-        database = sqlite3.open("appdb.so");
+        database = sqlite3.open("testdb.so");
       } else if (Platform.isWindows) {
-        database = sqlite3.open('appdb.dll');
+        database = sqlite3.open('testdb.dll');
       }
     } catch (err) {
       print("error from init database $err");
@@ -28,7 +28,7 @@ class DbHelper {
     return database;
   }
 
-  static Future createTables(String sql) async {
+  static Future createTable(String sql) async {
     try {
       Database db = await initDb();
       db.execute(sql);
